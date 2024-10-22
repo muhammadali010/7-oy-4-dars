@@ -17,12 +17,13 @@ function Products() {
       });
   }, []);
 
+
   return (
     <div className="grid grid-cols-3 gap-8 p-8">
       {products.map((product) => (
         <div key={product.id} className="bg-[#292838] shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105" >
           <Link to={`/products/${product.id}`}>
-            <img src={product.attributes.image} alt={product.attributes.title} className="w-full h-48 object-cover" />
+            <img src={product.attributes.image} alt={product.attributes.title} className="w-full h-48 object-cover " />
             <div className="p-4 text-center">
               <h2 className="text-xl font-bold text-white mb-2">
                 {product.attributes.title}

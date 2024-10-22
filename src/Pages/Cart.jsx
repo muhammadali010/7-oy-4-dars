@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate()
+
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartItems(storedCart);
+    const storeCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCartItems(storeCart);
   }, []);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.amount, 0);
