@@ -17,7 +17,7 @@ export const ThemeContext = createContext()
 function App() {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem('token'));
-  const [cart , setCart] = useState([])
+  const [cart, setCart] = useState([])
   const [theme, setTheme] = useState('light')
 
   let location = useLocation();
@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       setToken(localStorage.getItem('token'));
-    } else if (!( location.pathname == '/' ||location.pathname.includes('register') || location.pathname.includes('about') || location.pathname.includes('products') || location.pathname.includes('cart'))) {
+    } else if (!(location.pathname == '/' || location.pathname.includes('register') || location.pathname.includes('about') || location.pathname.includes('products') || location.pathname.includes('cart'))) {
       navigate('/login');
     }
   }, [navigate, location.pathname]);
@@ -39,40 +39,40 @@ function App() {
   };
 
   return (
-  <ThemeContext.Provider value={{theme, setTheme}}>
-  <CartContext.Provider value={{cart, setCart}}>
-    <Routes>
-      <Route path='/' element={<MainLayout><Home /></MainLayout>} />
-      <Route path='about' element={<MainLayout><About /></MainLayout>} />
-      <Route path='/cart' element={<MainLayout><Cart /></MainLayout>} />
-      <Route path='/products/:id' element={<MainLayout><Details /></MainLayout>} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/products' element={<MainLayout><Produts></Produts></MainLayout>} />
-      
-      <Route path='/checkout'
-        element={
-          <PrivateRoute isAuth={!!token}>
-            <MainLayout>
-              <Checkout />
-            </MainLayout>
-          </PrivateRoute>
-        }
-      />
-      <Route path='/orders'
-        element={
-          <PrivateRoute isAuth={!!token}>
-            <MainLayout>
-              <Orders />
-            </MainLayout>
-          </PrivateRoute>
-        }
-      />
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <CartContext.Provider value={{ cart, setCart }}>
+        <Routes>
+          <Route path='/' element={<MainLayout><Home /></MainLayout>} />
+          <Route path='about' element={<MainLayout><About /></MainLayout>} />
+          <Route path='/cart' element={<MainLayout><Cart /></MainLayout>} />
+          <Route path='/products/:id' element={<MainLayout><Details /></MainLayout>} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/products' element={<MainLayout><Produts></Produts></MainLayout>} />
 
-      <Route path='*' element={<ErrorPage />} />
-    </Routes>
-  </CartContext.Provider>
-  </ThemeContext.Provider>
+          <Route path='/checkout'
+            element={
+              <PrivateRoute isAuth={!!token}>
+                <MainLayout>
+                  <Checkout />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route path='/orders'
+            element={
+              <PrivateRoute isAuth={!!token}>
+                <MainLayout>
+                  <Orders />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+
+          <Route path='*' element={<ErrorPage />} />
+        </Routes>
+      </CartContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 

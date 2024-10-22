@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
-   const navigate = useNavigate()
+  const navigate = useNavigate()
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(storedCart);
@@ -14,7 +14,7 @@ function Cart() {
   const removeItem = (indexToRemove) => {
     const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart)); 
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   return (
@@ -32,7 +32,7 @@ function Cart() {
                   <p className="text-gray-500">Color: <span style={{ backgroundColor: item.color }} className="w-3 h-3 inline-block rounded-full"></span></p>
                   <div className="flex items-center mt-2">
                     <label htmlFor="amount" className="mr-2">Amount:</label>
-                    <select value={item.amount}  onChange={(e) => {  const updatedAmount = Number(e.target.value); const updatedCart = [...cartItems]; updatedCart[index].amount = updatedAmount; setCartItems(updatedCart);  localStorage.setItem('cart', JSON.stringify(updatedCart)); }}  className="border p-2 rounded"  >
+                    <select value={item.amount} onChange={(e) => { const updatedAmount = Number(e.target.value); const updatedCart = [...cartItems]; updatedCart[index].amount = updatedAmount; setCartItems(updatedCart); localStorage.setItem('cart', JSON.stringify(updatedCart)); }} className="border p-2 rounded"  >
                       {[...Array(10)].map((_, i) => (
                         <option key={i} value={i + 1}>
                           {i + 1}
@@ -59,7 +59,7 @@ function Cart() {
             <span>Order Total</span>
             <span>${total.toFixed(2)}</span>
           </div>
-          <button onClick={(e)=>{e.preventDefault(),navigate("/login")}} className="bg-blue-500 text-white w-full mt-6 py-2 rounded-lg"> PLEASE LOGIN </button>
+          <button onClick={(e) => { e.preventDefault(), navigate("/login") }} className="bg-blue-500 text-white w-full mt-6 py-2 rounded-lg"> PLEASE LOGIN </button>
         </div>
       </div>
     </div>

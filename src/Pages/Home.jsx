@@ -17,17 +17,17 @@ function Home() {
                 console.log(err);
 
             })
-    }) 
-     
+    })
+
     const navigate = useNavigate()
     function handleRedirect(id) {
-       navigate(`/products/${id}`) 
+        navigate(`/products/${id}`)
     }
 
-   function handleProducts(e){
-e.preventDefault()
-navigate("/products")
-}
+    function handleProducts(e) {
+        e.preventDefault()
+        navigate("/products")
+    }
     return (
         <div>
             <div className='flex mb-20'>
@@ -36,48 +36,40 @@ navigate("/products")
                     <p className='ml-10 text-2xl'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br /> Tempore repellat explicabo enim soluta temporibus asperiores <br /> aut obcaecati perferendis porro nobis.</p>
                     <button onClick={handleProducts} className='ml-10 bg-blue-500 p-3 rounded-md text-black mt-4'>OUR PRODUCTS</button>
                 </div>
-            <div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
-  <div className="carousel-item">
-    <img
-      src={img1}
-      className="rounded-box h-[420px]" />
-  </div>
-  <div className="carousel-item">
-    <img
-      src={img2}
-      className="rounded-box h-[420px]"  />
-  </div>
-</div>
-</div>
-<h1 className='text-4xl ml-10 mb-10'>featured products</h1>
-      <div className="wrapper container mx-auto flex flex-wrap gap-6 justify-center">
-  {products.length > 0 &&
-    products.map((product) => {
-      return (
-        <div
-          key={product.id}
-          className="w-[350px] bg-[#292838] p-4 rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
-          onClick={() => handleRedirect(product.id)}
-        >
-          <img
-            className="h-[200px] w-full object-cover rounded-t-lg"
-            src={product.attributes.image}
-            alt={product.attributes.title}
-          />
-          <div className="p-4 text-center">
-            <h2 className="text-xl font-bold text-white mb-2">
-              {product.attributes.title}
-            </h2>
-            <h3 className="text-lg text-[#a7a4f7] font-semibold">
-              ${product.attributes.price}
-            </h3>
-          </div>
-        </div>
-      );
-    })}
-</div>
+                <div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+                    <div className="carousel-item">
+                        <img
+                            src={img1}
+                            className="rounded-box h-[420px]" />
+                    </div>
+                    <div className="carousel-item">
+                        <img
+                            src={img2}
+                            className="rounded-box h-[420px]" />
+                    </div>
+                </div>
+            </div>
+            <h1 className='text-4xl ml-10 mb-10'>featured products</h1>
+            <div className="wrapper container mx-auto flex flex-wrap gap-6 justify-center">
+                {products.length > 0 &&
+                    products.map((product) => {
+                        return (
+                            <div key={product.id} className="w-[350px] bg-[#292838] p-4 rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105" onClick={() => handleRedirect(product.id)} >
+                                <img className="h-[200px] w-full object-cover rounded-t-lg" src={product.attributes.image} alt={product.attributes.title} />
+                                <div className="p-4 text-center">
+                                    <h2 className="text-xl font-bold text-white mb-2">
+                                        {product.attributes.title}
+                                    </h2>
+                                    <h3 className="text-lg text-[#a7a4f7] font-semibold">
+                                        ${product.attributes.price}
+                                    </h3>
+                                </div>
+                            </div>
+                        );
+                    })}
+            </div>
 
-           
+
         </div>
     )
 }
