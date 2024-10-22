@@ -50,19 +50,33 @@ navigate("/products")
 </div>
 </div>
 <h1 className='text-4xl ml-10 mb-10'>featured products</h1>
-            <div className="wrapper container mx-auto flex flex-wrap gap-3 justify-center">
-            {
-              products.length > 0 && products.map(function(product) {
-                return (
-                 <div className='w-1/4 shadow-md rounded-md ' onClick={()=> {handleRedirect(product.id)}}>
-                    <img className='h-[300px] w-full object-cover' src={product.attributes.image} alt="" />
-                    <h2>{product.attributes.title}</h2>
-                    <h3>${product.attributes.price}</h3>
-                 </div>
-                )
-              })
-            }
-            </div>
+      <div className="wrapper container mx-auto flex flex-wrap gap-6 justify-center">
+  {products.length > 0 &&
+    products.map((product) => {
+      return (
+        <div
+          key={product.id}
+          className="w-[350px] bg-[#292838] p-4 rounded-lg shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+          onClick={() => handleRedirect(product.id)}
+        >
+          <img
+            className="h-[200px] w-full object-cover rounded-t-lg"
+            src={product.attributes.image}
+            alt={product.attributes.title}
+          />
+          <div className="p-4 text-center">
+            <h2 className="text-xl font-bold text-white mb-2">
+              {product.attributes.title}
+            </h2>
+            <h3 className="text-lg text-[#a7a4f7] font-semibold">
+              ${product.attributes.price}
+            </h3>
+          </div>
+        </div>
+      );
+    })}
+</div>
+
            
         </div>
     )

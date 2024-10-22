@@ -1,9 +1,10 @@
 import React from 'react';
 import { TiShoppingCart } from "react-icons/ti";
 import { IoSunny } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function MainLayout({children}) {
+  const navigate = useNavigate()
   return (
     <>
       <div className="bg-[#0a192f] p-4 text-white flex justify-between items-center mb-10">
@@ -19,7 +20,7 @@ function MainLayout({children}) {
           
           <div className='flex items-center gap-2'>
             <IoSunny className='h-8 w-8'/>
-            <TiShoppingCart className='h-8 w-8' />
+            <TiShoppingCart onClick={(e=>{e.preventDefault(), navigate('/cart')})} className='h-8 w-8 cursor-pointer' />
           </div>
         </div>
       </div>

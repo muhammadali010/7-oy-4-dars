@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
-  const shippingCost = 5;
-  const taxRate = 0.10; 
-
+   const navigate = useNavigate()
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(storedCart);
   }, []);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.amount, 0);
-  const tax = subtotal * taxRate;
-  const total = subtotal + shippingCost + tax;
+  const total = subtotal;
   const removeItem = (indexToRemove) => {
     const updatedCart = cartItems.filter((_, index) => index !== indexToRemove);
     setCartItems(updatedCart);
@@ -57,19 +55,11 @@ function Cart() {
             <span>Subtotal</span>
             <span>${subtotal.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between mb-2">
-            <span>Shipping</span>
-            <span>${shippingCost.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between mb-2">
-            <span>Tax</span>
-            <span>${tax.toFixed(2)}</span>
-          </div>
           <div className="flex justify-between font-semibold text-lg mt-4">
             <span>Order Total</span>
             <span>${total.toFixed(2)}</span>
           </div>
-          <button className="bg-blue-500 text-white w-full mt-6 py-2 rounded-lg"> PLEASE LOGIN </button>
+          <button onClick={(e)=>{e.preventDefault(),navigate("/login")}} className="bg-blue-500 text-white w-full mt-6 py-2 rounded-lg"> PLEASE LOGIN </button>
         </div>
       </div>
     </div>

@@ -32,8 +32,6 @@ function Details() {
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
     existingCart.push(cartItem);
     localStorage.setItem('cart', JSON.stringify(existingCart));
-
-    alert('Added to cart!');
   };
 
   return (
